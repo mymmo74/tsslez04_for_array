@@ -11,36 +11,40 @@ var ar_valori = [];
 
 
 function cancella() {
-    
+
     // il -1 è per due motivi. Il rpimo è per selezionare l'elemento con indice giusto, e poi per "tradurre" da stringa a numero
-    var elem=document.getElementById("in_elem").value-1;
-    
-    
+    var elem = document.getElementById("in_elem").value - 1;
+
+
     var domanda = confirm("Sei sicuro di voler cancellare la donazione?");
     if (domanda === true) {
-        ar_nomi.splice(elem,1);
-        ar_valori.splice(elem,1);
-    
+        ar_nomi.splice(elem, 1);
+        ar_valori.splice(elem, 1);
+
         prep_output();
-      }
-    
+    }
+
 }
 
 
 function modifica() {
-    
+
     // il -1 è per due motivi. Il rpimo è per selezionare l'elemento con indice giusto, e poi per "tradurre" da stringa a numero
-    var elem=document.getElementById("in_elem").value-1;
-    
-    
+    var elem = document.getElementById("in_elem").value - 1;
+
+
     var domanda = confirm("Sei sicuro di voler modificare la donazione?");
     if (domanda === true) {
-        ar_nomi.splice(elem,1,document.getElementById("in_nome").value);
-        ar_valori.splice(elem,1,document.getElementById("in_valore").value);
-    
+        ar_nomi[elem] = document.getElementById("in_nome").value;
+        ar_valori[elem] = document.getElementById("in_valore").value;
+
+        // volendo (vedi righe successive, si può usare lo splice, inserendo come terzo parametro il valore da sostituire
+        //ar_nomi.splice(elem,1,document.getElementById("in_nome").value);
+        //ar_valori.splice(elem,1,document.getElementById("in_valore").value);
+
         prep_output();
-      }
-    
+    }
+
 }
 function addDonazione() {
     // carico array
@@ -55,7 +59,7 @@ function addDonazione() {
 function undo() {
     ar_nomi.pop();
     ar_valori.pop();
-    
+
     prep_output();
 }
 
@@ -63,6 +67,9 @@ function prep_output() {
     document.getElementById("div_donazioni").innerHTML = print_don();
 
     document.getElementById("totale").innerHTML = print_tot();
+
+    document.getElementById("in_elem").value = "";
+    document.getElementById("in_elem").max = ar_nomi.length;
 }
 
 // funzione per stampare le persone che hanno donato
@@ -77,8 +84,8 @@ function print_don() {
 
 
     for (i = 0; i < ar_nomi.length; i++) {
-
-        text += "<b>#" + (i + 1) + "</b> --> " + ar_nomi[i] + " ha donato " + ar_valori[i] + " €<br/>";
+        // In questo modo tutte le linee vengono generate con uno span con un id univoco, quindi possono essere gestiti anche singolarmenti
+        text += "<span id'don" + i + "'><b>#" + (i + 1) + "</b> --> " + ar_nomi[i] + " ha donato " + ar_valori[i] + " €<br/></span>";
 
     }
 
