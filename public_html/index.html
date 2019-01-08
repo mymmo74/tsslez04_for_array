@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Donazioni</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/scripts.js"></script>
+        <style>
+            td { vertical-align: top}
+        </style>
+    </head>
+    <body>
+        <h2>Donazioni</h2>
+        <table>
+            <tr>
+                <td width="50%">
+                    <input id="in_nome"   placeholder="ins. nome donatore" size="60"><br/>
+                    <input id="in_valore" placeholder="ins. valore" type="number"><br/>
+                    <input type="button" value="DONA! ! !" onclick="addDonazione()"><br/>
+                    totale donazioni: <span id="totale">0</span>
+
+                </td>
+                <td><div id="div_donazioni">nessuna donazione
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
