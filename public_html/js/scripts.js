@@ -5,10 +5,12 @@
  */
 
 // array per immagazzinare i nomi dei donatori
-var ar_nomi = [];
+var ar_nomi = ["bianchi","rossi", "verdi", "gialli"];
 // array per immagazzinare le donazioni effettuate
-var ar_valori = [];
+var ar_valori = [45,12,78,123];
 
+// variabile globale che tiene conto del valore totale delle donazioni
+var tot_Don = 0;
 
 function cancella() {
 
@@ -26,6 +28,37 @@ function cancella() {
 
 }
 
+function accendi() {
+    var elem=document.getElementById("in_elem")-1;
+    var el=document.getElementById("donlem")-1;
+
+}
+
+function cerca() {
+    let nome_ricerca = document.getElementById("in_nome").value;
+
+    // Variabile booleana che faccia da test
+    let continua = true;
+    let i = 0;
+    while (continua == true) {
+        nome_corrente = ar_nomi[i];
+        if (nome_ricerca == nome_corrente) {
+            //trovato
+            continua = false;
+            document.getElementById("valore_ricerca").innerHTML=ar_valori[i];
+        } else {
+            // niente, vado al prossimo
+            i++;
+        }
+        
+        //verifico che non ce ne siano più
+        if (i >= ar_nomi.length) {
+            continua = false;
+            document.getElementById("valore_ricerca").innerHTML="Nominativo non trovato";
+        }
+        
+    }
+}
 
 function modifica() {
 
@@ -64,10 +97,14 @@ function undo() {
 }
 
 function prep_output() {
-    document.getElementById("div_donazioni").innerHTML = print_don();
+
+    num_don=ar_nomi.length;
+    
+    div_donazioni.innerHTML = print_don();
+    //document.getElementById("div_donazioni").innerHTML = print_don();
 
     document.getElementById("totale").innerHTML = print_tot();
-
+    document.getElementById("numdon").innerHTML =num_don;
     document.getElementById("in_elem").value = "";
     document.getElementById("in_elem").max = ar_nomi.length;
 }
